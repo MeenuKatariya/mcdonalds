@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mac D</title>
+</head>
+<body>
+    <label><input class="foodItem" type="checkbox" id="Burger" value="Burger"> Burger</label>
+    <label><input class="foodItem" type="checkbox" id="HotDog" value="HotDog"> Hot Dog</label>
+    <label><input class="foodItem" type="checkbox" id="Pizza" value="Pizza"> Pizza</label>
+    <label><input class="foodItem" type="checkbox" id="ColdDrink" value="ColdDrink"> Cold Drink</label>
+    <label><input class="foodItem" type="checkbox" id="Coffee" value="Coffee"> Coffee</label>
+    <button id="orderBtn">Order Food</button>
+     
+    <div id="dash">
+
+    </div>
+    <div id="orderImages"></div>
+
+
+    <script>
+        var orderNumber=0;
+        var allFoodList=[
+            {
+                id: 'Burger',
+                url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCRVPXUr_pjE6o_xrT33OLZL_fmUmuhHKwtQ&usqp=CAU'
+            },
+            {
+                id: 'HotDog',
+                url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCRVPXUr_pjE6o_xrT33OLZL_fmUmuhHKwtQ&usqp=CAU'
+            },
+            {
+                id: 'Pizza',
+                url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCRVPXUr_pjE6o_xrT33OLZL_fmUmuhHKwtQ&usqp=CAU'
+            },
+            {
+                id: 'ColdDrink',
+                url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCRVPXUr_pjE6o_xrT33OLZL_fmUmuhHKwtQ&usqp=CAU'
+            },
+            {
+                id: 'Coffee',
+                url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCRVPXUr_pjE6o_xrT33OLZL_fmUmuhHKwtQ&usqp=CAU'
+            }
+        ]
+        document.querySelector('#orderBtn').addEventListener('click', function (){
+            orderNumber++;
+            var allItems=document.querySelectorAll('.foodItem');
+            // console.log(allItems);
+            var orderedFood=[];
+            allItems.forEach(element =>{
+                if(element.checked){
+                    orderedFood.push(element.id);
+                }
+            })
+
+            // console.log(orderedFood);
+            orderDone(orderedFood);
+
+            // setTimeout(()=>{
+            //     displayImages(orderedFood)
+            // },5000);
+        })
+
+        function orderDone(orderedFood){
+            return new Promise (resolve => {
+                setTimeout(() =>{
+                    resolve();
+                    displayImages(orderedFood);
+                },5000)
+            })
+        }
+
+        function displayImages(food){
+            document.querySelector('#dash').innerHTML='';
+            document.querySelector('#orderImages').innerHTML='';
+              for(var i=0;i<allFoodList.length;i++){
+                  if(food.includes(allFoodList[i].id)){
+                      var img=document.createElement('img');
+                      img.setAttribute('src',allFoodList[i].url);
+                      img.setAttribute('class','divImage');
+                      document.querySelector('#orderImages').append(img);
+                  }
+              }
+              var detail=document.createElement('h1');
+              detail.innerText='Order Number : #'+orderNumber+' is Ready !';
+              detail.setAttribute('id','orderNumberHeading');
+              document.querySelector('#dash').append(detail)
+        }
+    </script>
+</body>
+</html>
