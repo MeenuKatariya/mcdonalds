@@ -5,6 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mac D</title>
+
+    <style>
+       .divImage{
+        /* border: 1px solid red; */
+        margin-left:20px;
+
+        color:green;
+       } 
+
+       button{
+        color: green;
+        background-color: white;
+        box-shadow: rgb(85, 91, 255) 0px 0px 0px 3px;
+        border: none;
+          border-radius: 5px;
+
+       }
+    </style>
 </head>
 <body>
     <label><input class="foodItem" type="checkbox" id="Burger" value="Burger"> Burger</label>
@@ -47,7 +65,7 @@
         document.querySelector('#orderBtn').addEventListener('click', function (){
             orderNumber++;
             var allItems=document.querySelectorAll('.foodItem');
-            // console.log(allItems);
+            console.log(allItems);
             var orderedFood=[];
             allItems.forEach(element =>{
                 if(element.checked){
@@ -55,7 +73,7 @@
                 }
             })
 
-            // console.log(orderedFood);
+            console.log(orderedFood);
             orderDone(orderedFood);
 
             // setTimeout(()=>{
